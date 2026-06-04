@@ -2,9 +2,21 @@
 
     <springProfile name="local">
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <withJansi>true</withJansi>
             <encoder>
-                <pattern>%d{HH:mm:ss} %highlight(%-5level) [%cyan(%X{traceId})] [%magenta(%X{method} %X{uri})] %yellow(%logger{36}) - %msg%n</pattern>
+                <charset>UTF-8</charset>
+                <pattern>%d{HH:mm:ss} %highlight(%-5level) %yellow(%logger{36}) - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <charset>UTF-8</charset>
+                <pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
             </encoder>
         </appender>
         <root level="INFO">
