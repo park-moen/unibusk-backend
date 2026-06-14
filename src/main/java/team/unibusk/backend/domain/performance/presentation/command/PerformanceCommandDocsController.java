@@ -44,7 +44,7 @@ public interface PerformanceCommandDocsController {
     ResponseEntity<PerformanceRegisterResponse> registerPerformance(
             @RequestPart("request") @Valid PerformanceRegisterRequest request,
             @Parameter(description = "공연 관련 이미지")
-            @RequestPart(value = "image", required = false) MultipartFile image,
+            @RequestPart(value = "images", required = false) MultipartFile image,
             @MemberId Long memberId
     );
 
@@ -64,7 +64,7 @@ public interface PerformanceCommandDocsController {
     ResponseEntity<PerformanceDetailResponse> updatePerformance(
             @PathVariable Long performanceId,
             @RequestPart("request") @Valid PerformanceUpdateRequest request,
-            @RequestPart(value = "image", required = false) MultipartFile image,
+            @RequestPart(value = "images", required = false) MultipartFile image,
             @MemberId Long memberId
     );
 
