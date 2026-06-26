@@ -106,10 +106,10 @@ public class S3FileStorageAdapter implements FileStoragePort {
     }
 
     private String extractKeyFromUrl(String url) {
-        int index = url.indexOf(".amazonaws.com/");
-        if (index == -1) {
+        String base = String.format(publicUrlFormat, bucket) + "/";
+        if (!url.startsWith(base)) {
             throw new InvalidFileUrlException();
         }
-        return url.substring(index + ".amazonaws.com/".length());
+        return url.substring(base.length());
     }
 }

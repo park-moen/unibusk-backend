@@ -1,0 +1,115 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PGHOST}:${PGPORT:5432}/${PGDATABASE:railway}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:validate}
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+
+  security:
+    oAuthUrl:
+      login-url: ${LOGIN_URL:/api/auths/login}
+      redirect-url: ${REDIRECT_URL:/}
+    cookie:
+      domain: ${COOKIE_DOMAIN:}
+      secure: ${COOKIE_SECURE:true}
+      http-only: ${COOKIE_HTTP_ONLY:true}
+      sameSite: ${COOKIE_SAME_SITE:None}
+    oauth2:
+      client:
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            client-authentication-method: client_secret_post
+            redirect-uri: ${KAKAO_REDIRECT_URI}
+            authorization-grant-type: authorization_code
+            client-name: kakao
+            scope:
+              - account_email
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 500MB
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  expiration-time:
+    access-token: ${JWT_EXPIRATION_TIME_ACCESS_TOKEN:3600}
+    refresh-token: ${JWT_EXPIRATION_TIME_REFRESH_TOKEN:7776000}
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+
+server:
+  servlet:
+    context-path: /api
+  forward-headers-strategy: framework
+  tomcat:
+    max-part-count: 100
+
+swagger:
+  server:
+    local: ${SWAGGER_LOCAL_URL:http://localhost:8080/api}
+    dev: ${SWAGGER_DEV_URL:http://localhost:8080/api}
+    prod: ${SWAGGER_PROD_URL:http://localhost:8080/api}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_ACCESS_KEY}
+      secret-key: ${S3_SECRET_KEY}
+    region:
+      static: ${S3_REGION:auto}
+    s3:
+      bucket: ${S3_BUCKET}
+      endpoint: ${S3_ENDPOINT}
+      public-url: ${S3_PUBLIC_URL}
+    stack:
+      auto: false
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
+
+kakao:
+  api:
+    url: https://dapi.kakao.com
+    key: ${KAKAO_REST_API_KEY}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: never
+  metrics:
+    tags:
+      application: unibusk
+
+serverName: unibusk-server

@@ -1,12 +1,15 @@
 package team.unibusk.backend.domain.member.presentation.command;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import team.unibusk.backend.domain.member.application.command.MemberCommandService;
 import team.unibusk.backend.domain.member.application.dto.response.MemberNameUpdateResponse;
-import team.unibusk.backend.domain.member.presentation.MemberCommandDocsController;
 import team.unibusk.backend.domain.member.presentation.request.MemberNameUpdateRequest;
 import team.unibusk.backend.global.annotation.MemberId;
 
