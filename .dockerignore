@@ -11,4 +11,3 @@ out
 *.md
 deployment
 src/test
-gradle/wrapper/gradle-wrapper.jar
