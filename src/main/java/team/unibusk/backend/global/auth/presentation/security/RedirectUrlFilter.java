@@ -33,7 +33,9 @@ public class RedirectUrlFilter extends OncePerRequestFilter {
             "localhost",
             "unibusk.site",
             "www.unibusk.site",
-            "dev.unibusk.site"
+            "dev.unibusk.site",
+            "unibusk.xyz",
+            "www.unibusk.xyz"
     );
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();

@@ -1,20 +1,5 @@
 package team.unibusk.backend.global.auth.presentation.security.handler;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import org.springframework.web.util.UriComponentsBuilder;
-import team.unibusk.backend.global.auth.application.auth.AuthService;
-import team.unibusk.backend.global.auth.domain.user.CustomOAuth2User;
-import team.unibusk.backend.global.jwt.config.SecurityProperties;
-import team.unibusk.backend.global.jwt.injector.TokenInjector;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLDecoder;
@@ -23,7 +8,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import team.unibusk.backend.global.auth.application.auth.AuthService;
+import team.unibusk.backend.global.auth.domain.user.CustomOAuth2User;
 import static team.unibusk.backend.global.auth.presentation.security.RedirectUrlFilter.STATE_COOKIE_NAME;
+import team.unibusk.backend.global.jwt.config.SecurityProperties;
+import team.unibusk.backend.global.jwt.injector.TokenInjector;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -38,7 +38,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             "localhost",
             "unibusk.site",
             "www.unibusk.site",
-            "dev.unibusk.site"
+            "dev.unibusk.site",
+            "unibusk.xyz",
+            "www.unibusk.xyz"
     );
 
     @Override
